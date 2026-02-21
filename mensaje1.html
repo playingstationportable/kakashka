@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>26-08-25</title>
+</head>
+
+<body>
+
+<h2 id="question"></h2>
+
+<div id="answers"></div>
+
+<p id="result"></p>
+
+<div id="retry"></div>
+
+<script>
+
+// ======================
+// 🔧 ICI TU AJOUTES TES QUESTIONS
+// ======================
+
+const quiz = [
+{
+    question: "Que día era nuestra primera vez juntos? 🔞",
+    options: ["30 de octubre", "30 de noviembre", "1 de noviembre", "29 de ocutbre"],
+    correct: 2
+},
+{
+    question: "Cuantos condones hemos usado juntos? 🔞",
+    options: ["16", "12", "18", "15"],
+    correct: 0
+},
+{
+    question: "Cuando yo me dí cuento que te amaba? 🥹",
+    options: ["Cuando ví tu culo", "Cuando soñe de tí", "Cuando hable de tí a Dios", "En el botellon cuando me acompañaste a casa"],
+    correct: 2
+},
+{
+    question: "Que piensas es mi recuerdo favorito contigo?",
+    options: ["Cuando hemos vuelto del botellón", "Cuando te he dado la hoja en forma de corazón", "Nuestro primer beso", "El pedo de chocho"],
+    correct: 1
+}
+
+];
+
+// ======================
+// ⚙️ NE PAS TOUCHER
+// ======================
+
+let currentQuestion = 0;
+let score = 0;
+let wrongQuestions = [];
+let activeQuiz = quiz;
+
+function loadQuestion() {
+
+    if(currentQuestion >= activeQuiz.length){
+        showFinal();
+        return;
+    }
+
+    document.getElementById("result").innerHTML = "";
+
+    const q = activeQuiz[currentQuestion];
+    document.getElementById("question").innerHTML = q.question;
+
+    const answersDiv = document.getElementById("answers");
+    answersDiv.innerHTML = "";
+
+    q.options.forEach((option, index) => {
+        const button = document.createElement("button");
+        button.innerHTML = option;
+        button.onclick = function() { checkAnswer(index); };
+        answersDiv.appendChild(button);
+        answersDiv.appendChild(document.createElement("br"));
+        answersDiv.appendChild(document.createElement("br"));
+    });
+}
+
+function checkAnswer(choice) {
+    if(choice === activeQuiz[currentQuestion].correct){
+        score++;
+        document.getElementById("result").innerHTML = "waw q lista✅";
+    } else {
+        document.getElementById("result").innerHTML = "ayy no sabes nada❌";
+        wrongQuestions.push(activeQuiz[currentQuestion]);
+    }
+
+    currentQuestion++;
+    setTimeout(loadQuestion, 1000);
+}
+
+function showFinal() {
+    document.getElementById("question").innerHTML = "ya esta terminadoo.";
+    document.getElementById("answers").innerHTML = "";
+    document.getElementById("result").innerHTML = "Score : " + score + " / " + activeQuiz.length;
+
+    if(wrongQuestions.length > 0){
+        document.getElementById("retry").innerHTML =
+        "<br><button onclick='retryWrong()'>intentar de nuevo hasta q tengo todo bn?</button>";
+    } else {
+        document.getElementById("retry").innerHTML =
+        "<br>esta vez sii, q lista.";
+    }
+}
+
+function retryWrong(){
+    activeQuiz = wrongQuestions;
+    wrongQuestions = [];
+    currentQuestion = 0;
+    score = 0;
+    document.getElementById("retry").innerHTML = "";
+    loadQuestion();
+}
+
+loadQuestion();
+
+</script>
+
+</body>
+</html>

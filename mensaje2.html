@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Roulette Officielle</title>
+</head>
+
+<body>
+
+<h2>Ruleta de la muerte 👿👿</h2>
+<p>Dale al boton y la ruleta va a elegir un reto que tendré que hacer😔, y no hagas trampas dale solo una vez.</p>
+
+<button onclick="spin()">eso es el boton</button>
+
+<p id="result"></p>
+
+<script>
+
+// ==============================
+// 🔧 MODIFIE UNIQUEMENT ICI
+// ==============================
+
+const punishments = [
+    "Tengo q enviarte una foto hot 🔞",
+    "Hago todo lo que me digas durante 10 minutos",
+    "Tengo que grabar un audio diciendo << te amo, mi amor >> en el idioma que qres",
+    "Cuando vengo tengo que cocinar algo para ti",
+    "Tu eliges el reto",
+    "Tengo q escribirte una canción (no muy larga vale😫)"
+];
+
+const finalMessage = "Enviame una captura del reto para reclamarlo 😗";
+
+// ==============================
+// ⚙️ NE PAS TOUCHER
+// ==============================
+
+let isSpinning = false;
+
+function spin() {
+
+    if(isSpinning) return;
+
+    isSpinning = true;
+
+    const resultText = document.getElementById("result");
+    let counter = 0;
+    let interval = setInterval(() => {
+        const randomIndex = Math.floor(Math.random() * punishments.length);
+        resultText.innerHTML = "⏳ " + punishments[randomIndex];
+        counter++;
+        if(counter > 15){
+            clearInterval(interval);
+            const finalIndex = Math.floor(Math.random() * punishments.length);
+            resultText.innerHTML =
+                "<strong>🥁 La ruleta a elegido que... :</strong><br><br>" +
+                punishments[finalIndex] +
+                "<br><br>" +
+                finalMessage;
+            isSpinning = false;
+        }
+    }, 100);
+}
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>26-08-25</title>
+    <style>
+        a {
+          display: block;
+          margin: 5px 0;
+          padding: 5px;
+          background: #f2f2f2;
+          border-radius: 10px;
+          text-decoration: none;
+          color: black;
+          font-weight: 600;
+          transition: 0.2s;
+          font-size: 14px;
+        }
+        a:hover {
+          background: #e2e2e2;
+        }
+        button {
+          display: block;
+          margin: 5px 0;
+          padding: 5px;
+          background: #f2f2f2;
+          border-radius: 10px;
+          text-decoration: none;
+          color: black;
+          font-weight: 600;
+          transition: 0.2s;
+          font-size: 14px;
+        }
+
+        button:hover {
+          background: #e2e2e2;
+        }
+
+        .heart {
+    font-size: 100px;
+    animation: beat 1.2s infinite ease-in-out;
+    display: inline-block;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+@keyframes beat {
+    0%   { transform: scale(1); }
+    25%  { transform: scale(1.2); }
+    50%  { transform: scale(1); }
+    75%  { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+        </style>
+</head>
+<body>
+<button onclick="goRandom()" style="background:none; border:none;">
+    <span class="heart">💖</span>
+</button>
+
+<script>
+function goRandom() {
+    const pages = [
+        "mensaje1.html",
+        "mensaje2.html",
+    ];
+
+    const randomIndex = Math.floor(Math.random() * pages.length);
+    window.location.href = pages[randomIndex];
+}
+</script>
+
+</body>
+</html>
