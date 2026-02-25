@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>26-08-25</title>
     <style>
+      p{
+        font-size: large;
+        font-weight: 500;
+      }
         a {
           display: block;
           margin: 5px 0;
@@ -38,7 +42,7 @@
         }
 
         .heart {
-    font-size: 100px;
+    font-size:150px;
     animation: beat 1.2s infinite ease-in-out;
     display: inline-block;
     background: none;
@@ -56,6 +60,7 @@
         </style>
 </head>
 <body>
+  <p>Juego aleatorio:</p>
 <button onclick="goRandom()" style="background:none; border:none;">
     <span class="heart">💖</span>
 </button>
@@ -65,7 +70,6 @@ function goRandom() {
     const pages = [
         "mensaje1.html",
         "mensaje2.html",
-        "mensaje3.html",
     ];
 
     const randomIndex = Math.floor(Math.random() * pages.length);
@@ -73,6 +77,8 @@ function goRandom() {
 }
 </script>
 
+<a href="mensaje1.html">preguntasss</a>
+<a href="mensaje2.html">ruletaaa</a>
+<a href="mensaje3.html">otra ruletaaa</a>
 </body>
-
 </html>
