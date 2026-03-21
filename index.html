@@ -31,9 +31,11 @@
 </head>
 
 <body>
+<iframe src="player.html" style="display:none;" id="musicFrame"></iframe>
+
   <p id="demo"></p>
 <script>
-var countDownDate = new Date("Mar 26, 2026 22:00:0").getTime();
+var countDownDate = new Date("Mar 26, 2026 20:00:0").getTime();
 
 var x = setInterval(function() {
 
@@ -74,71 +76,26 @@ var x = setInterval(function() {
         <li><a href="index.html">Ronaldo</a></li>
         <li><a href="index.html">Messi</a></li>
     </ul>
-
-    
-
-<button onclick="previousSong()">⏮</button>
-<button onclick="nextSong()">⏭</button>
-<button id="muteBtn" onclick="toggleMute()">🔊</button>
-
-<br><br>
-
-<audio id="player" autoplay loop></audio>
-
-<script>
-
-
-
-const songs = [
-"song1.mp3",
-"song2.mp3",
-"song3.mp3",
-"song4.mp3"
-];
-
-
-
-const player = document.getElementById("player");
-
-let currentSong = Math.floor(Math.random() * songs.length);
-
-function loadSong(){
-    player.src = songs[currentSong];
-    player.play();
-}
-
-function nextSong(){
-    currentSong++;
-    if(currentSong >= songs.length){
-        currentSong = 0;
-    }
-    loadSong();
-}
-
-function previousSong(){
-    currentSong--;
-    if(currentSong < 0){
-        currentSong = songs.length - 1;
-    }
-    loadSong();
-}
-
-function toggleMute(){
-    player.muted = !player.muted;
-
-    const btn = document.getElementById("muteBtn");
-
-    if(player.muted){
-        btn.innerHTML = "🔇";
-    } else {
-        btn.innerHTML = "🔊";
-    }
-}
-
-loadSong();
-
 </script>
 
+<button onclick="prev()">⏮</button>
+<button onclick="next()">⏭</button>
+
+<button onclick="mute()">🔇</button>
+
+<script>
+function next(){
+    document.getElementById("musicFrame").contentWindow.nextSong();
+}
+
+function prev(){
+    document.getElementById("musicFrame").contentWindow.previousSong();
+}
+
+function mute(){
+    document.getElementById("musicFrame").contentWindow.toggleMute();
+}
+</script>
 
 </body>
 </html>

@@ -1,1 +1,23 @@
 <h1>4</h1>
+
+<body>
+    <iframe src="player.html" style="display:none;" id="musicFrame"></iframe>
+
+    <button onclick="prev()">⏮</button>
+<button onclick="next()">⏭</button>
+<button onclick="mute()">🔇</button>
+
+<script>
+function next(){
+    document.getElementById("musicFrame").contentWindow.nextSong();
+}
+
+function prev(){
+    document.getElementById("musicFrame").contentWindow.previousSong();
+}
+
+function mute(){
+    document.getElementById("musicFrame").contentWindow.toggleMute();
+}
+</script>
+</body>
